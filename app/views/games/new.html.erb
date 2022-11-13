@@ -1,0 +1,20 @@
+<h1>New game ready for you!</h1>
+
+<p>You see a set of 10 letters - type in the longest word you can find.</p>
+<p>You'll get points for english words & you'll be rewarded for being fast!</p>
+
+<ul>
+  <% @letters.each do |letter| %>
+    <li>
+      <%= letter %>
+    </li>
+  <% end %>
+</ul>
+
+
+<form action="/score" method='POST' data-turbo="false">
+  <input type="text" name='answer'>
+  <input type="submit" value='Go!'>
+  <input name="letters" type="hidden" value="<%= @letters.join %>"/>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+</form>
